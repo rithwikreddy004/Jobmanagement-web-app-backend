@@ -1,0 +1,25 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Job {
+  id                   String   @id @default(uuid())
+  jobTitle             String
+  companyName          String
+  location             String
+  jobType              String
+  salaryMin            Int
+  salaryMax            Int
+  jobDescription       String
+  requirements         String? // The '?' makes this field optional
+  responsibilities     String? // The '?' makes this field optional
+  applicationDeadline  DateTime
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
