@@ -23,6 +23,11 @@ async function bootstrap() {
     },
   }));
 
-  await app.listen(process.env.PORT ?? 3000);
+  
+
+
+  // Corrected line: We parse the port string to an integer
+  const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+  await app.listen(port);
 }
 bootstrap();
