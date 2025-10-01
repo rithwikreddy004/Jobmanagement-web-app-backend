@@ -8,7 +8,7 @@ async function bootstrap() {
   
   // 1. Enable CORS to allow requests from your frontend
   app.enableCors({
-    origin: 'https://rithwiik-job-management-web-app.vercel.app', // Make sure this matches your frontend's port
+    origin: 'https://job-management-version-2-frontend.vercel.app', // Make sure this matches your frontend's port
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
