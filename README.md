@@ -1,98 +1,126 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🚀 Deployment
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+**Live App:** [https://jobmanagementadmin.vercel.app](https://job-management-version-2-frontend.vercel.app/)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+# Job Management Admin Interface
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+**Project:** A full-stack web application designed for administrators to create, manage, filter, and view job postings with real-time updates and pixel-perfect UI.
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## **Table of Contents**
 
-## Compile and run the project
+* [Tech Stack](#tech-stack)
+* [Setup](#setup)
+* [Pages & Features](#pages--features)
+* [Design Notes](#design-notes)
+* [Screenshots](#screenshots)
+* [Implementation Status](#implementation-status)
+  
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## **Tech Stack**
 
-# production mode
-$ npm run start:prod
-```
+* **Frontend:** **Next.js** (App Router), **React.js**, **Mantine** (UI Library), **React Hook Form**
+* **Backend:** **NestJS** (Node.js/TypeScript)
+* **Database:** **PostgreSQL** (Hosted on Render)
+* **ORM:** **Prisma ORM**
+* **Validation:** **Zod** (Client-side Form Validation)
+* **Deployment:** **Vercel** (Frontend) + **Render** (Backend & Database)
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
+## **Setup**
 
-# e2e tests
-$ npm run test:e2e
+### **Setup (Run Locally)**
 
-# test coverage
-$ npm run test:cov
-```
+1.  **Clone the repositories** (Frontend and Backend)
+    ```bash
+    git clone [Frontend_Repo_URL] my-job-admin
+    git clone [Backend_Repo_URL] my-job-backend
+    ```
 
-## Deployment
+2.  **Install dependencies** in both directories:
+    ```bash
+    cd my-job-admin && npm install
+    cd ../my-job-backend && npm install
+    ```
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+3.  **Environment Variables (Backend)**
+    Create a `.env` file in the `my-job-backend` directory for local development:
+    ```
+    # Replace with your local Postgres credentials
+    DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/DB_NAME"
+    ```
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+4.  **Database Setup (Prisma)**
+    In the `my-job-backend` directory, apply the schema to your local PostgreSQL database:
+    ```bash
+    npx prisma migrate dev --name init
+    ```
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+5.  **Run the application (Simultaneously)**
+    Start the backend server:
+    ```bash
+    cd my-job-backend
+    npm run start:dev
+    ```
+    Start the frontend server:
+    ```bash
+    cd my-job-admin
+    npm run dev
+    ```
+    Visit `http://localhost:3001` to see the app.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## **Pages & Features**
 
-Check out a few resources that may come in handy when working with NestJS:
+### **1. Job Creation Model**
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+* **High-Fidelity Form:** Implements all required fields: Job Title, Company Name, Location, Job Type, Salary Range (Min/Max), Application Deadline, and Job Description.
+* **Robust Validation:** Uses **React Hook Form** and **Zod** to validate all fields, including ensuring the **Application Deadline** is a valid future date.
+* **Instant Submission:** Submits data via `POST /jobs` and automatically closes the modal and refreshes the dashboard upon success.
 
-## Support
+### **2. Job List Dashboard – `/`**
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+* **Real-time Listing:** Fetches and displays job postings from the live database.
+* **Dynamic Filtering:** Implements functional filtering that sends query parameters to the backend for **Job Title, Location, Job Type, and Salary Range**.
+* **Live Update:** Job list updates instantly when filters are changed and when a new job is created.
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## **Design Notes**
 
-## License
+* **Figma Fidelity:** UI elements are a **pixel-perfect replica** of the provided Figma design, covering header, filter bar, and job card layouts.
+* **Responsiveness:** Implemented responsive design across the header and main content areas to ensure optimal viewing on mobile and desktop devices.
+* **Data Flow:** All data requests use the deployed **NestJS API**, with configuration handled via environment variables (`NEXT_PUBLIC_API_URL`).
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
+
+## **Screenshots**
+
+![Home Page](#)#Home Page
+<img width="1891" height="907" alt="Screenshot 2025-10-08 222231" src="https://github.com/user-attachments/assets/53bf7a28-6b7f-4ce4-bf8e-a5b22f372425" />
+
+
+
+![Create Job Opening](#)#Create Job Opening
+<img width="1767" height="863" alt="Screenshot 2025-10-08 222307" src="https://github.com/user-attachments/assets/6b01d6a6-dfbf-4cbc-a387-f66d9766d151" />
+
+
+
+
+
+## **Implementation Status**
+
+**✅ Completed**
+
+* Full-Stack CRUD functionality for Job Postings.
+* Database Schema definition and migration via Prisma ORM.
+* Full UI Cloning and Responsive Design.
+* Functional Dynamic Filtering for all required fields.
+* Automated state synchronization (no manu
